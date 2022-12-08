@@ -14,6 +14,7 @@ levels = {
 answers = {}
 words = {}
 lap = 1
+user_level = 0
 
 choose_level = input('Введине уровень сложности (легкий, средний, сложный): ')
 print(f'Вы выбрали {choose_level} уровень сложности, мы предложим 5 слов, подберите их перевод')
@@ -28,18 +29,24 @@ for word, translate in words.items():
         print(f'Вы угадали, {word} это {translate}')
         print()
         answers[word] = True
-        lap+=1
+        user_level += 1
+        lap += 1
     else:
         print(f'Вы не угадали, {word} это {translate}')
         print()
         answers[word] = False
-        lap+=1
+        lap += 1
+
+print(f'Вы правильно угадали {user_level} слова')
+if user_level in levels:
+    print(f'Ваш ранг: {levels[user_level]}')
 
 print('Правильно отвечены слова:')
 for answer, correct in answers.items():
     if correct:
         print(answer)
 
-
-
-
+print('Неправильно отвечены слова:')
+for answer, correct in answers.items():
+    if not correct:
+        print(answer)
